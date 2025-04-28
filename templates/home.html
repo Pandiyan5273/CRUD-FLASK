@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>CRUD Operations</title>
+    </head>
+    <body>
+        <h1>Student List</h1>
+        
+        <p><a href="{{ url_for('adduser') }}">Add User</a></p>
+
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Age</th>
+                <th>Name</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            {% for data in datas %}
+            <tr>
+                <td>{{ data['ID'] }}</td>
+                <td>{{ data['AGE'] }}</td>
+                <td>{{ data['name'] if data['name'] else 'No Name' }}</td>  //handle the none values
+                <td><a href="{{ url_for('edituser', id=data['ID']) }}">Edit</a></td>
+                <td><a href="{{ url_for('deleteuser', id=data['ID']) }}" onclick="return confirm('Are you sure you want to delete?');">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
